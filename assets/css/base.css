@@ -29,6 +29,12 @@ input, button, textarea, select { font: inherit; color: inherit; }
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; font-family: var(--font-display); }
 p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
+/* Hero eyebrow: override the 72ch cap + auto-center it */
+.hero-eyebrow {
+  max-width: none;
+  margin-inline: auto;
+}
+
 ::selection {
   background: oklch(from var(--color-primary) l c h / 0.2);
   color: var(--color-text);

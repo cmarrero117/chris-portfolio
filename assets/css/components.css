@@ -279,25 +279,29 @@
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 72%);
 }
 
-/* hero-content: centered in the flex hero, text centered within it */
 .hero-content {
   position: relative;
   z-index: 1;
   max-width: 800px;
   width: 100%;
-  margin-inline: auto;   /* ← centers the box itself inside the flex container */
-  text-align: center;    /* ← ensures all inline/text children inherit center */
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centers all direct children horizontally */
 }
 
+/* Hero eyebrow: override base.css p max-width:72ch and ensure centering */
 .hero-eyebrow {
+  max-width: none !important;
+  width: 100%;
+  text-align: center;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: var(--space-6);
-  text-align: center;
-  width: 100%;
   display: block;
 }
 .hero-title {
@@ -309,7 +313,7 @@
   margin-bottom: var(--space-6);
   display: flex;
   flex-direction: column;
-  align-items: center;   /* ← centers each name span horizontally */
+  align-items: center;
   gap: var(--space-1);
 }
 .hero-name { display: block; }
@@ -321,7 +325,8 @@
   color: var(--color-text-muted);
   line-height: 1.8;
   max-width: 50ch;
-  margin: 0 auto var(--space-8);
+  text-align: center;
+  margin-bottom: var(--space-8);
 }
 .hero-actions {
   display: flex;
@@ -352,10 +357,7 @@
   color: var(--color-primary);
   animation-play-state: paused;
 }
-.scroll-arrow svg {
-  display: block;
-  flex-shrink: 0;
-}
+.scroll-arrow svg { display: block; flex-shrink: 0; }
 @keyframes arrowFloat {
   0%   { transform: translateX(-50%) translateY(0);    opacity: 0.45; }
   50%  { transform: translateX(-50%) translateY(7px);  opacity: 1;    }
@@ -516,12 +518,15 @@
   background: var(--color-divider);
   margin: var(--space-1) 0;
 }
+/* Tags: align-self:stretch makes it fill the card width despite
+   the parent's align-items:center, then justify-content:center
+   can actually center the tags across that full width. */
 .about-card-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
   justify-content: center;
-  width: 100%;            /* ← fills the card so justify-content centers the tags */
+  align-self: stretch;    /* fills full card width */
   align-items: center;
 }
 
