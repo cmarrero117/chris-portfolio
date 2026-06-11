@@ -253,42 +253,88 @@
   padding: var(--space-32) clamp(var(--space-4), 6vw, var(--space-16)) var(--space-20);
 }
 .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+/* Canvas particle field */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
 .hero-grain {
   position: absolute; inset: 0;
-  opacity: 0.035;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px;
+  z-index: 1;
 }
+
+/* Outer wide glow — large, soft, slow pulse */
 .hero-glow {
   position: absolute;
-  top: 35%; left: 50%;
+  top: 38%; left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(400px, 60vw, 800px);
-  height: clamp(400px, 60vw, 800px);
+  width: clamp(500px, 75vw, 1000px);
+  height: clamp(500px, 75vw, 1000px);
   background: radial-gradient(ellipse at center,
-    oklch(from var(--color-primary) l c h / 0.07) 0%,
-    transparent 65%);
+    rgba(91, 140, 255, 0.10) 0%,
+    rgba(91, 140, 255, 0.04) 40%,
+    transparent 68%);
   border-radius: 50%;
+  animation: glowPulse 7s ease-in-out infinite;
+  z-index: 2;
 }
+
+/* Inner tight bloom — sharper, slightly brighter center */
+.hero-glow-bloom {
+  position: absolute;
+  top: 38%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(200px, 30vw, 420px);
+  height: clamp(200px, 30vw, 420px);
+  background: radial-gradient(ellipse at center,
+    rgba(91, 140, 255, 0.18) 0%,
+    rgba(91, 140, 255, 0.06) 45%,
+    transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 7s ease-in-out infinite;
+  animation-delay: -3.5s; /* offset so they breathe alternately */
+  z-index: 2;
+}
+
+@keyframes glowPulse {
+  0%   { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+  50%  { opacity: 1;    transform: translate(-50%, -50%) scale(1.06); }
+  100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+}
+
 .hero-lines {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(to right, oklch(from var(--color-text) l c h / 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(from var(--color-text) l c h / 0.025) 1px, transparent 1px);
+    linear-gradient(to right, rgba(244,243,240,0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244,243,240,0.022) 1px, transparent 1px);
   background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse at center, black 20%, transparent 72%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 38%, black 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 38%, black 10%, transparent 75%);
+  z-index: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow, .hero-glow-bloom { animation: none; }
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 4;
   max-width: 800px;
   width: 100%;
   margin-inline: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;   /* centers all direct children horizontally */
+  align-items: center;
 }
 
 /* Hero eyebrow: override base.css p max-width:72ch and ensure centering */
@@ -341,7 +387,7 @@
   bottom: var(--space-8);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,7 +572,7 @@
   flex-wrap: wrap;
   gap: var(--space-2);
   justify-content: center;
-  align-self: stretch;    /* fills full card width */
+  align-self: stretch;
   align-items: center;
 }
 
