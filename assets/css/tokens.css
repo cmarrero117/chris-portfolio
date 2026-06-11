@@ -1,7 +1,7 @@
 /*
   DESIGN TOKENS — Chris Portfolio
   Art direction: Pre-med academic portfolio → refined, elegant, scholarly
-  Palette: Cool gray surfaces (Pantone Cool Gray 10 C family) + light blue accent #5B8CFF
+  Palette: Warm gray surfaces (brown/amber undertone) + light blue accent #5B8CFF
   Typography: Instrument Serif (display) + Satoshi (body)
   Density: Spacious editorial
 */
@@ -83,50 +83,50 @@
   --content-wide:    1200px;
 }
 
-/* DARK MODE — Cool Gray 10 C family surfaces + #5B8CFF blue accent */
+/* DARK MODE — Warm gray surfaces (brown/amber undertone) + #5B8CFF blue accent */
 [data-theme="dark"] {
-  --color-bg:               #2f3134;
-  --color-surface:          #35373b;
-  --color-surface-2:        #3d4044;
-  --color-surface-offset:   #45484d;
-  --color-surface-dynamic:  #50545a;
-  --color-divider:          #5d6168;
-  --color-border:           #6a6e75;
+  --color-bg:               #302e2b;
+  --color-surface:          #373530;
+  --color-surface-2:        #3f3d37;
+  --color-surface-offset:   #47443e;
+  --color-surface-dynamic:  #524f47;
+  --color-divider:          #5f5c53;
+  --color-border:           #6e6a60;
 
-  --color-text:             #f3f5f8;
-  --color-text-muted:       #d4d8df;
-  --color-text-faint:       #aeb4bf;
-  --color-text-inverse:     #202226;
+  --color-text:             #f4f2ee;
+  --color-text-muted:       #d6d2c8;
+  --color-text-faint:       #b0ab9f;
+  --color-text-inverse:     #222019;
 
   --color-primary:          #5B8CFF;
   --color-primary-hover:    #7aa2ff;
   --color-primary-active:   #9ab8ff;
-  --color-primary-highlight:#2d3f6b;
+  --color-primary-highlight:#2a3d6a;
 
-  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.18);
-  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.24);
-  --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.34);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.20);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.28);
+  --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.40);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --color-bg:               #2f3134;
-    --color-surface:          #35373b;
-    --color-surface-2:        #3d4044;
-    --color-surface-offset:   #45484d;
-    --color-surface-dynamic:  #50545a;
-    --color-divider:          #5d6168;
-    --color-border:           #6a6e75;
-    --color-text:             #f3f5f8;
-    --color-text-muted:       #d4d8df;
-    --color-text-faint:       #aeb4bf;
-    --color-text-inverse:     #202226;
+    --color-bg:               #302e2b;
+    --color-surface:          #373530;
+    --color-surface-2:        #3f3d37;
+    --color-surface-offset:   #47443e;
+    --color-surface-dynamic:  #524f47;
+    --color-divider:          #5f5c53;
+    --color-border:           #6e6a60;
+    --color-text:             #f4f2ee;
+    --color-text-muted:       #d6d2c8;
+    --color-text-faint:       #b0ab9f;
+    --color-text-inverse:     #222019;
     --color-primary:          #5B8CFF;
     --color-primary-hover:    #7aa2ff;
     --color-primary-active:   #9ab8ff;
-    --color-primary-highlight:#2d3f6b;
-    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.18);
-    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.24);
-    --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.34);
+    --color-primary-highlight:#2a3d6a;
+    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.20);
+    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.28);
+    --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.40);
   }
 }
