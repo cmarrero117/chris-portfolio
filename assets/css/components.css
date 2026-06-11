@@ -32,7 +32,7 @@
   color: var(--color-text);
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 1.1rem;   /* Fixed — not fluid, keeps logo compact */
+  font-size: 1.1rem;
   letter-spacing: 0.03em;
   flex-shrink: 0;
 }
@@ -48,9 +48,9 @@
 .nav-links a {
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 0.8125rem;  /* Fixed 13px — nav links should never grow */
+  font-size: 0.6875rem !important;  /* Hard 11px — nav links never scale */
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   position: relative;
   padding-bottom: 2px;
@@ -152,12 +152,14 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
+  /* Tight pill proportions — padding tuned to 11px text */
+  padding: 0.45rem 1.1rem;
   border-radius: var(--radius-full);
-  font-family: var(--font-body);
-  font-size: 0.8125rem;  /* Fixed 13px — buttons must stay compact */
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-family: var(--font-body) !important;
+  font-size: 0.6875rem !important;  /* Hard 11px — never inherits from body */
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
@@ -197,7 +199,7 @@
   display: inline-block;
   padding: 2px var(--space-3);
   border-radius: var(--radius-full);
-  font-size: 0.7rem;    /* Fixed small — tags must stay tight */
+  font-size: 0.6rem !important;   /* Hard 9.6px — tags are decoration */
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -216,7 +218,7 @@
 }
 .section-label {
   font-family: var(--font-body);
-  font-size: 0.6875rem;  /* Fixed 11px — eyebrow labels must stay small */
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -225,7 +227,7 @@
 }
 .section-heading {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);   /* 28→44px fluid — controlled range */
+  font-size: var(--text-2xl);
   font-weight: 400;
   line-height: 1.08;
   color: var(--color-text);
@@ -285,7 +287,7 @@
 }
 
 .hero-eyebrow {
-  font-size: 0.6875rem;   /* Fixed 11px — eyebrow never grows */
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -294,7 +296,7 @@
 }
 .hero-title {
   font-family: var(--font-display);
-  font-size: var(--text-hero);  /* 48→96px fluid */
+  font-size: var(--text-hero);
   font-weight: 400;
   line-height: 0.92;
   color: var(--color-text);
@@ -307,7 +309,7 @@
 .hero-name-italic { font-style: italic; color: var(--color-primary); }
 
 .hero-subtitle {
-  font-size: var(--text-base);  /* Pulled down from --text-lg — prevents subtitle overflow */
+  font-size: var(--text-base);
   font-weight: 300;
   color: var(--color-text-muted);
   line-height: 1.8;
@@ -331,7 +333,7 @@
   z-index: 1;
 }
 .scroll-label {
-  font-size: 0.625rem;   /* Fixed 10px */
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-text-faint);
@@ -368,7 +370,7 @@
   align-items: center;
   gap: var(--space-5);
   padding-inline: var(--space-5);
-  font-size: 0.75rem;     /* Fixed 12px — ticker is decoration */
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -422,7 +424,7 @@
 }
 .stat-number {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);   /* 28→44px — constrained */
+  font-size: var(--text-2xl);
   font-weight: 400;
   color: var(--color-primary);
   font-variant-numeric: tabular-nums;
@@ -430,13 +432,13 @@
 }
 .stat-suffix {
   font-family: var(--font-display);
-  font-size: var(--text-lg);    /* 16→20px */
+  font-size: var(--text-lg);
   color: var(--color-primary);
   font-weight: 400;
   line-height: 1;
 }
 .stat-label {
-  font-size: 0.6875rem;  /* Fixed 11px */
+  font-size: 0.6875rem;
   color: var(--color-text-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -479,7 +481,7 @@
 .avatar-initials {
   position: absolute;
   font-family: var(--font-display);
-  font-size: 1.4rem;   /* Fixed — initials in a fixed-size circle */
+  font-size: 1.4rem;
   color: var(--color-primary);
   line-height: 1;
 }
@@ -557,14 +559,14 @@
 }
 .research-card-num {
   font-family: var(--font-display);
-  font-size: var(--text-xl);   /* Pulled down from --text-3xl — key fix */
+  font-size: var(--text-xl);
   font-weight: 400;
   color: var(--color-text-faint);
   line-height: 1;
 }
 .research-card h3 {
   font-family: var(--font-display);
-  font-size: var(--text-base);   /* Pulled down from --text-lg */
+  font-size: var(--text-base);
   font-weight: 400;
   color: var(--color-text);
   line-height: 1.3;
@@ -590,7 +592,7 @@
   letter-spacing: 0.06em;
 }
 .research-status {
-  font-size: 0.6rem;
+  font-size: 0.6rem !important;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -626,7 +628,7 @@
 .achievement-item:first-child { border-top: 1px solid var(--color-divider); }
 .achievement-year {
   font-family: var(--font-display);
-  font-size: var(--text-xs);   /* Fixed small — year is a label */
+  font-size: var(--text-xs);
   color: var(--color-text-faint);
   font-variant-numeric: tabular-nums;
   padding-top: 5px;
@@ -651,7 +653,7 @@
 .achievement-content { padding-left: var(--space-2); }
 .achievement-title {
   font-family: var(--font-display);
-  font-size: var(--text-base);   /* Pulled down from --text-lg — key fix */
+  font-size: var(--text-base);
   font-weight: 400;
   color: var(--color-text);
   margin-bottom: var(--space-1);
@@ -682,7 +684,7 @@
 }
 .vision-heading { margin-bottom: var(--space-5); }
 .vision-body {
-  font-size: var(--text-base);   /* Pulled down from --text-lg */
+  font-size: var(--text-base);
   font-weight: 300;
   color: var(--color-text-muted);
   line-height: 1.85;
@@ -707,7 +709,7 @@
 }
 .pillar-num {
   font-family: var(--font-display);
-  font-size: var(--text-xl);   /* Pulled down from --text-2xl */
+  font-size: var(--text-xl);
   color: var(--color-text-faint);
   line-height: 1;
   margin-bottom: var(--space-3);
@@ -752,7 +754,7 @@
   border-radius: var(--radius-full);
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 0.8125rem;   /* Fixed 13px */
+  font-size: 0.75rem !important;   /* Hard 12px */
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: color var(--transition-interactive),
@@ -781,7 +783,7 @@
   justify-content: space-between;
 }
 .footer-text, .footer-tagline {
-  font-size: 0.6875rem;   /* Fixed 11px */
+  font-size: 0.6875rem;
   color: var(--color-text-faint);
   letter-spacing: 0.05em;
 }
