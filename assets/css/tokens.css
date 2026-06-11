@@ -1,7 +1,7 @@
 /*
   DESIGN TOKENS — Chris Portfolio
   Art direction: Pre-med academic portfolio → refined, elegant, scholarly
-  Palette: Deep dark neutrals + warm gold accent
+  Palette: Cool gray surfaces (Pantone Cool Gray 10 C family) + light blue accent #5B8CFF
   Typography: Instrument Serif (display) + Satoshi (body)
   Density: Spacious editorial
 */
@@ -22,11 +22,11 @@
   --color-text-faint:       #b0ada7;
   --color-text-inverse:     #f8f7f4;
 
-  /* Primary Accent — Warm Gold */
-  --color-primary:          #9a6f2e;
-  --color-primary-hover:    #7a5520;
-  --color-primary-active:   #5c3e14;
-  --color-primary-highlight:#e8dcc8;
+  /* Primary Accent — Light Blue */
+  --color-primary:          #3a6de0;
+  --color-primary-hover:    #2a56c4;
+  --color-primary-active:   #1e40a8;
+  --color-primary-highlight:#dde8fb;
 
   /* Radius */
   --radius-sm:   0.375rem;
@@ -55,14 +55,14 @@
   /* —————————————————————————————————————
      TYPE SCALE — Tighter clamp ranges to prevent overflow
   ————————————————————————————————————— */
-  --text-xs:   clamp(0.75rem,  0.72rem + 0.15vw, 0.8125rem);  /* 12→13px — labels */
-  --text-sm:   clamp(0.8125rem,0.78rem + 0.18vw, 0.9375rem);  /* 13→15px — ui/buttons */
-  --text-base: clamp(0.9375rem,0.9rem  + 0.2vw,  1rem);       /* 15→16px — body */
-  --text-lg:   clamp(1rem,     0.95rem + 0.4vw,  1.25rem);    /* 16→20px — subheadings */
-  --text-xl:   clamp(1.25rem,  1.1rem  + 0.8vw,  1.75rem);    /* 20→28px — section titles */
-  --text-2xl:  clamp(1.75rem,  1.4rem  + 1.5vw,  2.75rem);    /* 28→44px — headings */
-  --text-3xl:  clamp(2rem,     1.5rem  + 2vw,    3.25rem);    /* 32→52px — large accents */
-  --text-hero: clamp(3rem,     2rem    + 4vw,    6rem);        /* 48→96px — hero only */
+  --text-xs:   clamp(0.75rem,  0.72rem + 0.15vw, 0.8125rem);
+  --text-sm:   clamp(0.8125rem,0.78rem + 0.18vw, 0.9375rem);
+  --text-base: clamp(0.9375rem,0.9rem  + 0.2vw,  1rem);
+  --text-lg:   clamp(1rem,     0.95rem + 0.4vw,  1.25rem);
+  --text-xl:   clamp(1.25rem,  1.1rem  + 0.8vw,  1.75rem);
+  --text-2xl:  clamp(1.75rem,  1.4rem  + 1.5vw,  2.75rem);
+  --text-3xl:  clamp(2rem,     1.5rem  + 2vw,    3.25rem);
+  --text-hero: clamp(3rem,     2rem    + 4vw,    6rem);
 
   /* Fonts */
   --font-display: 'Instrument Serif', Georgia, serif;
@@ -83,50 +83,50 @@
   --content-wide:    1200px;
 }
 
-/* DARK MODE */
+/* DARK MODE — Cool Gray 10 C family surfaces + #5B8CFF blue accent */
 [data-theme="dark"] {
-  --color-bg:               #0e0d0b;
-  --color-surface:          #131210;
-  --color-surface-2:        #181614;
-  --color-surface-offset:   #1c1a17;
-  --color-surface-dynamic:  #242118;
-  --color-divider:          #2a2720;
-  --color-border:           #353026;
+  --color-bg:               #2f3134;
+  --color-surface:          #35373b;
+  --color-surface-2:        #3d4044;
+  --color-surface-offset:   #45484d;
+  --color-surface-dynamic:  #50545a;
+  --color-divider:          #5d6168;
+  --color-border:           #6a6e75;
 
-  --color-text:             #e8e4dc;
-  --color-text-muted:       #8a8678;
-  --color-text-faint:       #524e44;
-  --color-text-inverse:     #0e0d0b;
+  --color-text:             #f3f5f8;
+  --color-text-muted:       #d4d8df;
+  --color-text-faint:       #aeb4bf;
+  --color-text-inverse:     #202226;
 
-  --color-primary:          #d4a44c;
-  --color-primary-hover:    #e8b860;
-  --color-primary-active:   #f0c870;
-  --color-primary-highlight:#2a2415;
+  --color-primary:          #5B8CFF;
+  --color-primary-hover:    #7aa2ff;
+  --color-primary-active:   #9ab8ff;
+  --color-primary-highlight:#2d3f6b;
 
-  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
-  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
-  --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.50);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.18);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.24);
+  --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.34);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --color-bg:               #0e0d0b;
-    --color-surface:          #131210;
-    --color-surface-2:        #181614;
-    --color-surface-offset:   #1c1a17;
-    --color-surface-dynamic:  #242118;
-    --color-divider:          #2a2720;
-    --color-border:           #353026;
-    --color-text:             #e8e4dc;
-    --color-text-muted:       #8a8678;
-    --color-text-faint:       #524e44;
-    --color-text-inverse:     #0e0d0b;
-    --color-primary:          #d4a44c;
-    --color-primary-hover:    #e8b860;
-    --color-primary-active:   #f0c870;
-    --color-primary-highlight:#2a2415;
-    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
-    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
-    --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.50);
+    --color-bg:               #2f3134;
+    --color-surface:          #35373b;
+    --color-surface-2:        #3d4044;
+    --color-surface-offset:   #45484d;
+    --color-surface-dynamic:  #50545a;
+    --color-divider:          #5d6168;
+    --color-border:           #6a6e75;
+    --color-text:             #f3f5f8;
+    --color-text-muted:       #d4d8df;
+    --color-text-faint:       #aeb4bf;
+    --color-text-inverse:     #202226;
+    --color-primary:          #5B8CFF;
+    --color-primary-hover:    #7aa2ff;
+    --color-primary-active:   #9ab8ff;
+    --color-primary-highlight:#2d3f6b;
+    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.18);
+    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.24);
+    --shadow-lg: 0 16px 48px oklch(0 0 0 / 0.34);
   }
 }
