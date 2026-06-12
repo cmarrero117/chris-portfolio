@@ -300,7 +300,7 @@
     transparent 70%);
   border-radius: 50%;
   animation: glowPulse 7s ease-in-out infinite;
-  animation-delay: -3.5s; /* offset so they breathe alternately */
+  animation-delay: -3.5s;
   z-index: 2;
 }
 
@@ -564,9 +564,6 @@
   background: var(--color-divider);
   margin: var(--space-1) 0;
 }
-/* Tags: align-self:stretch makes it fill the card width despite
-   the parent's align-items:center, then justify-content:center
-   can actually center the tags across that full width. */
 .about-card-tags {
   display: flex;
   flex-wrap: wrap;
@@ -879,4 +876,32 @@
   .hero-actions         { flex-direction: column; align-items: center; }
   .contact-links        { flex-direction: column; }
   .about-stats          { gap: var(--space-5); }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS BAR
+═══════════════════════════════════════════ */
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 1200;
+  pointer-events: none;
+  background: color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+.scroll-progress-bar {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    color-mix(in oklab, var(--color-primary) 68%, white) 100%
+  );
+  box-shadow: 0 0 18px color-mix(in oklab, var(--color-primary) 35%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-bar { transition: none !important; }
 }

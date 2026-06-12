@@ -138,3 +138,21 @@
 
   sections.forEach(s => observer.observe(s));
 })();
+
+// ── Scroll Progress Bar ────────────────────────────────────
+(function () {
+  const bar = document.getElementById('scroll-progress-bar');
+  if (!bar) return;
+
+  const update = () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollRange = doc.scrollHeight - doc.clientHeight;
+    const progress = scrollRange > 0 ? scrollTop / scrollRange : 0;
+    bar.style.transform = `scaleX(${progress})`;
+  };
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+})();
