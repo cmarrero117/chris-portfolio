@@ -2,41 +2,150 @@
    ANIMATIONS & SCROLL REVEALS
 ═══════════════════════════════════════════ */
 
-/* Hero fade-in sequence */
+/* ───────────────────────────────────────────────────
+   HERO — Fade-in sequence on load
+─────────────────────────────────────────────────── */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(28px);
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .fade-in.delay-1 { animation-delay: 0.15s; }
-.fade-in.delay-2 { animation-delay: 0.3s; }
-.fade-in.delay-3 { animation-delay: 0.45s; }
-.fade-in.delay-4 { animation-delay: 0.6s; }
+.fade-in.delay-2 { animation-delay: 0.32s; }
+.fade-in.delay-3 { animation-delay: 0.50s; }
+.fade-in.delay-4 { animation-delay: 0.68s; }
 
-@keyframes fadeUp {
+@keyframes heroFadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scroll reveals — JS adds .visible when in view */
+/* ───────────────────────────────────────────────────
+   BASE REVEAL — default: fade up
+   JS adds .visible when element enters viewport
+─────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px);
+  transition:
+    opacity  0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal.delay-1 { transition-delay: 0.1s; }
-.reveal.delay-2 { transition-delay: 0.2s; }
-.reveal.delay-3 { transition-delay: 0.3s; }
 
+/* Manual stagger helpers (kept for explicit overrides) */
+.reveal.delay-1 { transition-delay: 0.10s; }
+.reveal.delay-2 { transition-delay: 0.20s; }
+.reveal.delay-3 { transition-delay: 0.30s; }
+.reveal.delay-4 { transition-delay: 0.42s; }
+
+/* ───────────────────────────────────────────────────
+   DIRECTIONAL VARIANTS
+─────────────────────────────────────────────────── */
+
+/* Slide from left — section labels, headings */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition:
+    opacity  0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide from right — about card, vision pillars last */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition:
+    opacity  0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale up — stat numbers, pillar numbers */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.82) translateY(16px);
+  transition:
+    opacity  0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Clip-path wipe — achievement timeline lines, dividers */
+.reveal-wipe {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-wipe.visible {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ───────────────────────────────────────────────────
+   AUTO-STAGGER — siblings get progressive delay
+   JS sets --stagger-i on each child automatically
+─────────────────────────────────────────────────── */
+[data-stagger] > .reveal,
+[data-stagger] > .reveal-left,
+[data-stagger] > .reveal-right,
+[data-stagger] > .reveal-scale {
+  transition-delay: calc(var(--stagger-i, 0) * 0.11s);
+}
+
+/* ───────────────────────────────────────────────────
+   SECTION LABEL — eyebrow lines slide in from left
+─────────────────────────────────────────────────── */
+.section-label.reveal {
+  transform: translateX(-20px);
+  transition:
+    opacity  0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.section-label.reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ───────────────────────────────────────────────────
+   ACHIEVEMENT ITEMS — slide up with wipe line
+─────────────────────────────────────────────────── */
+.achievement-item .achievement-line {
+  transform-origin: left;
+}
+
+/* ───────────────────────────────────────────────────
+   MARQUEE — respect reduced-motion
+─────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .fade-in, .reveal {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .marquee-track { animation-play-state: paused; }
+}
+
+/* ───────────────────────────────────────────────────
+   REDUCED MOTION — global override
+─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-wipe {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
   }
 }

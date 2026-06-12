@@ -4,12 +4,11 @@
 
 'use strict';
 
-// ── Theme Toggle ──────────────────────────────────────────
+// ── Theme Toggle ────────────────────────────────────────────
 (function () {
   const toggle = document.querySelector('[data-theme-toggle]');
   const root   = document.documentElement;
 
-  // Init from system preference
   let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   root.setAttribute('data-theme', theme);
   updateIcon(theme);
@@ -32,10 +31,10 @@
 // ── Sticky Nav ────────────────────────────────────────────
 (function () {
   const header = document.getElementById('site-header');
-  const onScroll = () => {
+  if (!header) return;
+  window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  }, { passive: true });
 })();
 
 // ── Mobile Menu ───────────────────────────────────────────
@@ -51,7 +50,6 @@
     menu.setAttribute('aria-hidden', String(open));
   });
 
-  // Close on nav link click
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       btn.setAttribute('aria-expanded', 'false');
@@ -61,9 +59,10 @@
   });
 })();
 
-// ── Scroll Reveal ─────────────────────────────────────────
+// ── Scroll Reveal ───────────────────────────────────────────
 (function () {
-  const reveals = document.querySelectorAll('.reveal');
+  const CLASSES = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-wipe';
+  const reveals = document.querySelectorAll(CLASSES);
   if (!reveals.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -73,24 +72,34 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
 
   reveals.forEach(el => observer.observe(el));
 })();
 
-// ── Animated Counters ────────────────────────────────────
+// ── Auto Stagger ───────────────────────────────────────────
+// Sets --stagger-i CSS var on each direct child of [data-stagger]
+// so CSS transition-delay = i * 0.11s automatically
+(function () {
+  document.querySelectorAll('[data-stagger]').forEach(parent => {
+    const children = [...parent.children];
+    children.forEach((child, i) => {
+      child.style.setProperty('--stagger-i', i);
+    });
+  });
+})();
+
+// ── Animated Counters ──────────────────────────────────────
 (function () {
   const counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
 
   const animateCount = (el, target) => {
-    const duration = 1200;
-    const start = performance.now();
-    const easeOut = t => 1 - Math.pow(1 - t, 3);
-
-    const update = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
+    const duration = 1400;
+    const start    = performance.now();
+    const easeOut  = t => 1 - Math.pow(1 - t, 3);
+    const update   = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
       el.textContent = Math.round(easeOut(progress) * target);
       if (progress < 1) requestAnimationFrame(update);
     };
@@ -100,10 +109,8 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const el     = entry.target;
-        const target = parseInt(el.dataset.count, 10);
-        animateCount(el, target);
-        observer.unobserve(el);
+        animateCount(entry.target, parseInt(entry.target.dataset.count, 10));
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
