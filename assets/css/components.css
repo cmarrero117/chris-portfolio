@@ -723,7 +723,6 @@
   background: var(--color-primary);
   box-shadow: 0 0 6px oklch(from var(--color-primary) l c h / 0.5);
 }
-.subsection-label { margin-top: var(--space-16); }
 .achievement-content { padding-left: var(--space-2); }
 .achievement-title {
   font-family: var(--font-display);
